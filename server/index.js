@@ -3,11 +3,11 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-//Init
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// use middlewares
+
 app.use(cors());
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
