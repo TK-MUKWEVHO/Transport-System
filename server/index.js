@@ -1,19 +1,19 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
-const cors = require("cors");
-
-
+import express from "express";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import cors from "cors";
+import studentRoutes from './routes/student.js'
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use('/student', studentRoutes);
 
 app.use(cors());
 app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(express.json());
 
-//Connection to database
+//Connectio
 const CONNECTION_URL =
   "mongodb+srv://TransportSystem:Transport1@cluster0.pbh06.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
