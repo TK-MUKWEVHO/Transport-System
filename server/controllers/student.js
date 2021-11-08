@@ -12,6 +12,7 @@ export const getTrip=(req,res)=>{
     res.send("GetTripinfo");
 }
 
+
 export const reserveTrip=(req,res)=>{
     res.send("GetTripinfo");
 }
