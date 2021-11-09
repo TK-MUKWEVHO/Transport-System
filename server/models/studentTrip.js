@@ -5,6 +5,7 @@ const TripSchema = mongoose.Schema({
     originPoint: String,
     destinationPoint:  String,
     time: Date,
+    status: String,
 });
 
 const StudentTrip = mongoose.model('studentTrip', TripSchema);
