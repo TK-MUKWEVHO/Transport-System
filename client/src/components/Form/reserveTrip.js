@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 export default function ReserveTrip() {
+  
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

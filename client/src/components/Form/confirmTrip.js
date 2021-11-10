@@ -4,8 +4,14 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import {useSelector} from 'react-redux';
 
 export default function ConfirmTrip() {
+  
+  const studentTrip =useSelector((state)=>state.studentTrip);
+
+  console.log(studentTrip);
+    
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

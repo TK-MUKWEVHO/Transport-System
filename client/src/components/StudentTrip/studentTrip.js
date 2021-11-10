@@ -12,16 +12,14 @@ import Button from '@mui/material/Button';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import ReserveTrip from '../Form/form';
-import ConfirmTrip from '../Form/other';
+import ReserveTrip from '../Form/reserveTrip';
+import ConfirmTrip from '../Form/confirmTrip';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -100,6 +98,7 @@ export default function StudentTrip() {
                   )}
 
                   <Button
+                    type="submit"
                     variant="contained"
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
