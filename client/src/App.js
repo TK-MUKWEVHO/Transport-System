@@ -15,6 +15,8 @@ import MenuIcon from '@mui/material/Menu';
 import AppBar from '@mui/material/AppBar';
 import SignIn from "./components/signin/SignIn";
 import SignUp from "./components/signup/signup";
+
+
 const App=()=>{
     const Classes = useStyle();
     const dispatch = useDispatch();
@@ -46,6 +48,7 @@ const App=()=>{
         <SignIn/>
     </Box>
     <SignUp/>
+<StudentTrip/>
     </Container>
     );
 }
