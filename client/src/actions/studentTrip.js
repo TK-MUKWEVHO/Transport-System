@@ -19,5 +19,4 @@ export const reserveTrip = (trip) =>async (dispatch)=>{
         } catch (error) {
             console.log(error);
         }
-
 }

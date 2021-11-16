@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -8,35 +8,22 @@ import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-
+import { useDispatch } from 'react-redux';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="text.secondary" align="center" {...props}>
-      {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import {createStudent} from '../../actions/student';
 
 const theme = createTheme();
 
-export default function SignUp() {
+const SignUp=()=> {
+
+  const [StudentData,setStudentData]= useState({firstName:'',lastName: '',studentNumber: '',email:'',password: '',ApplyBus: ''});
+  const dispatch =useDispatch();
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    // eslint-disable-next-line no-console
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    dispatch(createStudent(StudentData));
   };
 
   return (
@@ -52,13 +39,37 @@ export default function SignUp() {
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            
           </Avatar>
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                  value={StudentData.firstName}
+                  onChange={(e)=>setStudentData({...StudentData, firstName:e.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                  value={StudentData.lastName}
+                  onChange={(e)=>setStudentData({...StudentData, lastName:e.target.value})}
+                />
+              </Grid>
               <Grid item xs={12}>
                 <TextField
                   required
@@ -66,6 +77,9 @@ export default function SignUp() {
                   id="studentNumber"
                   label="Student Number"
                   name="studentNumber"
+                  autoComplete="studentNumber"
+                  value={StudentData.studentNumber}
+                  onChange={(e)=>setStudentData({...StudentData, studentNumber:e.target.value})}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -87,6 +101,20 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
+                  value={StudentData.password}
+                  onChange={(e)=>setStudentData({...StudentData, password:e.target.value})}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox
+                  required 
+                  name="ApplyBus" 
+                  id="ApplyBus" 
+                  color="primary" />}
+                  label="Confirm that you are applying for student transport, Bus fees will apply to your Student Accont."
+                  value={StudentData.ApplyBus}
+                  onChange={(e)=>setStudentData({...StudentData, ApplyBus:e.target.value})}
                 />
               </Grid>
             </Grid>
@@ -107,8 +135,8 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );
 }
+export default SignUp;

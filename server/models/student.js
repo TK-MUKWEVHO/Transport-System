@@ -4,8 +4,7 @@ const StudentSchema = mongoose.Schema({
     student: String,
     firstname: String,
     lastname: String,
-    bus: Boolean,
-    email: String
+    email: String,
     student: Number,
     password: String
 });

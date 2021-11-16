@@ -9,9 +9,7 @@ export const getTrip = async (req,res)=>{
     }
 }
 
-export const getStudent = async(req,res)=>{
-    res.send("Student Details");
-}
+
 
 export const reserveTrip= async (req,res)=>{
     const trip= req.body;

@@ -1,10 +1,13 @@
 import express from 'express';
-import { getTrip, reserveTrip,getStudent } from '../controllers/studentTrip.js';
+import { getTrip, reserveTrip} from '../controllers/studentTrip.js';
+import {getStudent,createStudent} from '../controllers/student.js';
+
 const router= express.Router();
 
 router.get('/student',getStudent);
-router.get('/',getTrip);
+router.get('/trip',getTrip);
 router.post('/reserve', reserveTrip);
+router.post('/createStudent',createStudent);
 
 
 export default router;
