@@ -1,10 +1,12 @@
 import mongoose from 'mongoose';
 
 const TripSchema = mongoose.Schema({
+    firstName: String,
+    lastName: String,
     studentNumber: Number,
-    originPoint: String,
-    destinationPoint:  String,
-    time: Date,
+    from: String,
+    time: String,
+    destination:  String,
     status: String,
 });
 

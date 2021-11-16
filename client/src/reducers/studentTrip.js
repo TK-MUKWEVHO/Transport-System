@@ -4,7 +4,7 @@ export default (studentTrip=[],action)=>{
         case 'FETCH_TRIP':
             return action.payload;
         case 'RESERVE_TRIP':
-            return studentTrip;
+            return [...studentTrip,action.payload];
         default:
             return studentTrip;
     }

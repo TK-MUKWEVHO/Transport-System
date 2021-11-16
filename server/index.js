@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import studentRoutes from './routes/studentTrip.js'
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 
 
@@ -23,7 +23,4 @@ mongoose
     console.log(`Database is running`)
   )
   .catch((error) => console.log(error.message));
-
-
-
 app.listen(PORT, () => console.log(`Server up on Port: ${PORT}`));

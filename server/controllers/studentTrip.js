@@ -9,15 +9,17 @@ export const getTrip = async (req,res)=>{
     }
 }
 
+export const getStudent = async(req,res)=>{
+    res.send("Student Details");
+}
+
 export const reserveTrip= async (req,res)=>{
-    const trip =req.body;
+    const trip= req.body;
 
-    const newTrip= new StudentTrip(trip);
-
-    try {
+    const newTrip = new StudentTrip(trip);
+    try{
         await newTrip.save();
-        res.status(201).json(newTrip);
-    } catch (error) {
+    }catch(error){
         res.status(409).json({message: error.message});
     }
 }

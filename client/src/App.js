@@ -1,14 +1,13 @@
 import React, {useEffect} from "react";
-import Form from "./components/Form/reserveTrip";
-import StudentTrip from "./components/StudentTrip/studentTrip";
 import useStyle from './styles';
 import {useDispatch} from 'react-redux';
 import {getTrip} from './actions/studentTrip';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import NavBar from "./components/NavBar/NavBar";
-
+import BookTrip from "./components/Form/BookTrip";
+import ConfirmTrip from "./components/Form/ConfirmTrip";
+import SignUp from "./components/signup/signup";
 
 
 const App=()=>{
@@ -17,13 +16,16 @@ const App=()=>{
     useEffect(() => {
         dispatch(getTrip())
     }, [dispatch])
+
+    
     return(
         
         <Container maxWith="sm">
             <Box>
                <NavBar/>
-              
-              <StudentTrip/>
+               
+               <BookTrip/>  
+               <SignUp/>        
             </Box>
          </Container>
     );
