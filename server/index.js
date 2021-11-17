@@ -15,7 +15,7 @@ app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 app.use('/studentTrip', studentRoutes);
-app.use('student',stdRouter);
+app.use('/student',stdRouter);
 //Connectio
 const CONNECTION_URL =
   "mongodb+srv://TransportSystem:Transport1@cluster0.pbh06.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";

@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Icon from './icon';
-import Box from '@mui/material/Box';
 import { signin, signup } from '../../actions/student';
-import Input from './Input';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const initialState = { firstName: '', lastName: '', studentNumber: '', password: '', confirmPassword: '' };
+import useStyles from './styles';
+import Input from './Input';
+
+const initialState = { firstName: '', lastName: '', studentNumber: 0, password: '', confirmPassword: '' };
 
 const SignUp = () => {
-  const theme=createTheme();
   const [form, setForm] = useState(initialState);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
   const history = useNavigate();
-  
+  const classes = useStyles();
 
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
@@ -36,26 +36,16 @@ const SignUp = () => {
       dispatch(signin(form, history));
     }
   };
-
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
-    <ThemeProvider theme={theme}>
     <Container component="main" maxWidth="xs">
-      <Box
-          sx={{
-            marginTop: 8,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-          }}
-        >
-      <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-            
+      <Paper className={classes.paper} elevation={6}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
-        <Box  sx={{ mt: 1 }}>
-        <form onSubmit={handleSubmit}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             { isSignup && (
             <>
@@ -66,11 +56,10 @@ const SignUp = () => {
             <Input name="studentNumber" label="Student Number" handleChange={handleChange} type="number" />
             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
             { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} /> }
-                
-            <Button type="submit" fullWidth variant="contained" color="primary" >
+          </Grid>
+          <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             { isSignup ? 'Sign Up' : 'Sign In' }
           </Button>
-          </Grid>
           <Grid container justify="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
@@ -79,10 +68,9 @@ const SignUp = () => {
             </Grid>
           </Grid>
         </form>
-        </Box>
-      </Box>
+      </Paper>
     </Container>
-</ThemeProvider>
   );
 };
+
 export default SignUp;

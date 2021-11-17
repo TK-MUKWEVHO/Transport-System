@@ -1,9 +1,18 @@
-export default (student=[],action)=>{
+import * as actionType from '../constants/actionTypes';
 
-    switch (action.type) {
-        case 'CREATE_STUDENT':
-            return [...student,action.payload];
-        default:
-            return student;
-    }
-}
+const authReducer = (state = { authData: null }, action) => {
+  switch (action.type) {
+    case actionType.AUTH:
+      localStorage.setItem('profile', JSON.stringify({ ...action?.data }));
+
+      return { ...state, authData: action.data, loading: false, errors: null };
+    case actionType.LOGOUT:
+      localStorage.clear();
+
+      return { ...state, authData: null, loading: false, errors: null };
+    default:
+      return state;
+  }
+};
+
+export default authReducer;
