@@ -1,17 +1,14 @@
 import React, {useEffect} from "react";
-import useStyle from './styles';
 import {useDispatch} from 'react-redux';
 import {getTrip} from './actions/studentTrip';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import NavBar from "./components/NavBar/NavBar";
-import BookTrip from "./components/Form/BookTrip";
-import ConfirmTrip from "./components/Form/ConfirmTrip";
-import SignUp from "./components/signup/signup";
+import { BrowserRouter,Routes,Route} from "react-router-dom";
+import Authetication from './components/Authetication/Authetication';
 
 
 const App=()=>{
-    const Classes = useStyle();
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getTrip())
@@ -19,15 +16,16 @@ const App=()=>{
 
     
     return(
-        
+        <BrowserRouter>
         <Container maxWith="sm">
             <Box>
-               <NavBar/>
-               
-               <BookTrip/>  
-               <SignUp/>        
+               <NavBar/> 
+               <Routes>
+                   <Route path="/" exact component={Authetication}/>
+                </Routes>        
             </Box>
          </Container>
+        </BrowserRouter>
     );
 }
 
