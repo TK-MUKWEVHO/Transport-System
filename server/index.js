@@ -3,6 +3,8 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import cors from "cors";
 import studentRoutes from './routes/studentTrip.js'
+import stdRouter from './routes/student.js';
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -13,6 +15,7 @@ app.use(bodyParser.json({ limit: "50mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 app.use('/studentTrip', studentRoutes);
+app.use('student',stdRouter);
 //Connectio
 const CONNECTION_URL =
   "mongodb+srv://TransportSystem:Transport1@cluster0.pbh06.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
