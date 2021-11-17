@@ -1,13 +1,14 @@
 import mongoose from 'mongoose';
 
 const TripSchema = mongoose.Schema({
-    firstName: String,
-    lastName: String,
+    name: String,
     studentNumber: Number,
     from: String,
     time: String,
     destination:  String,
-    status: String,
+    temperature: Number,
+    status:{ type: String, default: "Panding"},
+
 });
 
 const StudentTrip = mongoose.model('studentTrip', TripSchema);

@@ -6,6 +6,6 @@ const router= express.Router();
 
 router.post('/',authentication, reserveTrip);
 router.patch('/:id',authentication,confirmTrip);
-router.get('/:id',authentication,getTrip);
+router.get('/studentNum',authentication,getTrip);
 
 export default router;
