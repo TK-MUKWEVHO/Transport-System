@@ -20,9 +20,7 @@ const App=()=>{
         <Container maxWith="sm">
             <Box>
                <NavBar/> 
-               <Routes>
-                   <Route path="/" exact component={Authetication}/>
-                </Routes>        
+               <Authetication/>      
             </Box>
          </Container>
         </BrowserRouter>
