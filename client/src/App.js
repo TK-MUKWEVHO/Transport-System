@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Authetication from './components/Authetication/Authetication';
-import BookTrip from "./components/Form/BookTrip";
+import Trip from "./components/Trip/Trip";
 
 
 const App=()=>{
@@ -23,7 +23,7 @@ const App=()=>{
                <NavBar/> 
                <Routes>
                   <Route exact path="/" element={<Authetication/>}/>
-                  <Route exact path="/home" element={<BookTrip/>}/>
+                  <Route exact path="/home" element={<Trip/>}/>
                </Routes>     
             </Box>
          </Container>

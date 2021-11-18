@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { AppBar, Typography, Toolbar, Avatar, Button } from '@material-ui/core';
-import { Link, useNavigate , useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 import * as actionType from '../../constants/actionTypes';
-
+import useStyles from './styles';
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const dispatch = useDispatch();
   const location = useLocation();
-  const history = useNavigate();
-  
+  const history =useNavigate();
+  const classes = useStyles();
 
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
 
-    history('/authetication');
+    history('/');
 
     setUser(null);
   };
@@ -34,20 +34,19 @@ const Navbar = () => {
   }, [location]);
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-      <Typography variant="h6" align="center" sx={{ flexGrow: 1 }}>
+    <AppBar className={classes.appBar} position="static" >
+      <Typography variant="h6" color="inherit" component="div">
           BUS SERVICE SYSTEM
-      </Typography>
+    </Typography>
+      <Toolbar className={classes.toolbar}>
         {user?.result ? (
-          <div>
-            <Avatar>{user?.result.name.charAt(0)}</Avatar>
-            <Typography variant="h6">{user?.result.name}</Typography>
-            <Button variant="contained" color="secondary" onClick={logout}>Logout</Button>
+          <div className={classes.profile}>
+            <Avatar  alt={user?.result.name}></Avatar>
+            <Typography className={classes.userName} variant="h6">{user?.result.name}</Typography>
+            <Button variant="contained" className={classes.logout} color="secondary" onClick={logout}>Logout</Button>
           </div>
         ) : (
-          <div>
-          </div> 
+          null
         )}
       </Toolbar>
     </AppBar>
