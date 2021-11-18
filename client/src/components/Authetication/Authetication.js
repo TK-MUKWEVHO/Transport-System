@@ -9,7 +9,7 @@ import { signin, signup } from '../../actions/student';
 import useStyles from './styles';
 import Input from './Input';
 
-const initialState = { firstName: '', lastName: '', studentNumber: 0, password: '', confirmPassword: '' };
+const initialState = { firstName: '', lastName: '', studentNumber: '', password: '', confirmPassword: '' };
 
 const SignUp = () => {
   const [form, setForm] = useState(initialState);

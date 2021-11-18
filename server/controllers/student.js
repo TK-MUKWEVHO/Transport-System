@@ -8,13 +8,14 @@ export const signin=async(req,res)=>{
     const {studentNumber,password}=req.body;
     try {
         const findStudent =await Student.findOne({studentNumber});
-        if(!findStudnet) return res.status(404).json({message: "Student does not exist"});
+        if(!findStudent) return res.status(404).json({message: "Student does not exist"});
         const correctPassword =await bcrypt.compare(password,findStudent.password);
         if(!correctPassword) return res.status(400).json({message: "Invalid Password"});
         const token =jwt.sign({studentNumber: findStudent.studentNumber,id: findStudent._id},secret,{expiresIn:"1h"});
         res.status(200).json({result: findStudent,token});
     } catch (error) {
         res.status(500).json({message: "Something went wrong"});
+        console.log(error);
     }
 };
 

@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch} from 'react-redux';
-import {getTrip} from './actions/studentTrip';
+//import {getTrip} from './actions/studentTrip';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import NavBar from "./components/NavBar/NavBar";
@@ -10,10 +10,10 @@ import BookTrip from "./components/Form/BookTrip";
 
 
 const App=()=>{
-    const dispatch = useDispatch();
+   /* const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getTrip())
-    }, [dispatch])
+    }, [dispatch])*/
 
     
     return(

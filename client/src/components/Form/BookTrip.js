@@ -6,7 +6,7 @@ import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
-import {reserveTrip} from '../../actions/studentTrip';
+//import {reserveTrip} from '../../actions/studentTrip';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -19,8 +19,6 @@ const BookTrip = () =>{
 
   const handleSubmit=(e)=>{
       e.preventDefault();
-
-      dispatch(reserveTrip(tripData));
   }
     return (
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>

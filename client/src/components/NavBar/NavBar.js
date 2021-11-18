@@ -16,7 +16,7 @@ const Navbar = () => {
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
 
-    history.push('/authetication');
+    history('/authetication');
 
     setUser(null);
   };

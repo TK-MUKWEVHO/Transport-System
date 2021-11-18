@@ -10,8 +10,8 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-export const fetchTrip = (id) => API.get(`/studentTrip/${id}`);
-export const reserveTrip=(newReservation)=>API.post('/studentTrip',newReservation);
+//export const fetchTrip = (id) => API.get(`/studentTrip/${id}`);
+//export const reserveTrip=(newReservation)=>API.post('/studentTrip',newReservation);
 
 
 export const signIn = (formData) => API.post('/student/signin', formData);
