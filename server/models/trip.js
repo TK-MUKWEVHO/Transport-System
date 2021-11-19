@@ -8,7 +8,7 @@ const TripSchema = mongoose.Schema({
     temperature: {type: Number, default: 0},
     date: {type: Date, default: new Date()},
     time: String,
-    busRegistration: String,
+    busRegistration: {type: String, default: "ss-2k-20"},
 });
 const Trip = mongoose.model('Trip', TripSchema);
 export default Trip;
