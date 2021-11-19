@@ -26,9 +26,10 @@ const Trip = () => {
   const handleSubmit = (e) => {
     e.preventDefault(); 
     dispatch(reserveTrip(form,history));
-    
+
   };
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  
   const campus=[
     {name: "Main Campus To Arcadia Campus"},
     {name: "Arcadia Campus To Main Campus"},
