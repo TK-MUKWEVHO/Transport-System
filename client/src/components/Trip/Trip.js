@@ -2,17 +2,18 @@ import React, { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper,TextField, Grid, Typography, Container } from '@material-ui/core';
 import { useNavigate,useLocation } from 'react-router-dom';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+
 import useStyles from './styles';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
 import decode from 'jwt-decode';
+import {reserveTrip} from '../../actions/trip';
 
 const Trip = () => {
   const [user,setUser]= useState(JSON.parse(localStorage.getItem('profile')));
 
-  const [form, setForm]= { name: '', studentNumber: '', FromTo: '', time: '' };
-  
+   const [form,setForm]=useState({name: user?.result.name,studentNumber: user?.result.studentNumber,fromTo: '',time: ''});
+
   const dispatch = useDispatch();
   const history = useNavigate();
   const classes = useStyles();
@@ -23,16 +24,16 @@ const Trip = () => {
   }, [location]);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(reserveTrip(form,history)); 
+    e.preventDefault(); 
+    dispatch(reserveTrip(form,history));
+    
   };
-
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
-  
-  const campus=[{name: "Main Campus To Arcadia Campus"},
-  {name: "Arcadia Campus To Main Campus"},
-  {name: "Sosha South To Arcadia Campus"},
-  {name: "South North To Arcadia Campus"},
+  const campus=[
+    {name: "Main Campus To Arcadia Campus"},
+    {name: "Arcadia Campus To Main Campus"},
+    {name: "Sosha South To Arcadia Campus"},
+    {name: "South North To Arcadia Campus"},
     {name: "Acadia Campus To Sosha South"},
     {name: "Acadia Campus To Sosha North"},
     {name: "Sosha South To Main Campus"},
@@ -44,13 +45,9 @@ const Trip = () => {
             index % 2 === 0 ? '00' : '30'
           }`,
       );
-
   return (
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={6}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">Book Trip</Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
@@ -90,7 +87,7 @@ const Trip = () => {
                         variant="outlined"
                         label="Select From and Destination"
                         placeholder="Choose Campus"
-                        onChange={handleChange}
+                        handleChange={handleChange}
                       />
                     )}
                  />
@@ -103,7 +100,6 @@ const Trip = () => {
                     getOptionDisabled={(option) =>
                         option === timeSlots[0] || option === timeSlots[2]
                     }
-                    
                     renderInput={(params) => 
                     <TextField 
                     {...params} 
@@ -111,12 +107,10 @@ const Trip = () => {
                     label="Choose Time" 
                     id="time" 
                     name="time" 
-                    onChange={handleChange} 
+                    handleChange={handleChange} 
                     />}
                 />
-                
               </Grid>
-            
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             Book Trip
@@ -126,5 +120,4 @@ const Trip = () => {
     </Container>
   );
 };
-
 export default Trip;
