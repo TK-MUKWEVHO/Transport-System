@@ -1,8 +1,8 @@
-export default (trip=[],action)=>{
+export default (state={isLoading: true,trip: []},action)=>{
     switch (action.type) {
         case 'RESERVE_TRIP':
-            return [...trip,action.payload];
+            return {...state,trip: [...state.trip,action.payload]};
         default:
-            return trip;
+            return state;
     }
 }

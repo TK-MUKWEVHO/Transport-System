@@ -13,7 +13,7 @@ export const getTrip = async (req,res)=>{
 export const reserveTrip= async (req,res)=>{
     const trip= req.body;
 
-    const newTrip = new Trip(trip);
+    const newTrip = new Trip({...trip,time: new Date().toISOString()});
     try{
         await newTrip.save();
     }catch(error){

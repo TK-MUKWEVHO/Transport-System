@@ -12,7 +12,7 @@ import {reserveTrip} from '../../actions/trip';
 const Trip = () => {
   const [user,setUser]= useState(JSON.parse(localStorage.getItem('profile')));
 
-   const [form,setForm]=useState({name: user?.result.name,studentNumber: user?.result.studentNumber,fromTo: '',time: ''});
+   const [form,setForm]=useState({tripFromTo: '',time: ''});
 
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -25,7 +25,7 @@ const Trip = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault(); 
-    dispatch(reserveTrip(form,history));
+    dispatch(reserveTrip({...form,name: user?.result.name,studentNumber: user?.result.studentNumber},history));
 
   };
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
@@ -83,8 +83,8 @@ const Trip = () => {
                     renderInput={(params) => (
                       <TextField
                         {...params}
-                        id="fromTo"
-                        name="fromTo"
+                        id="tripFromTo"
+                        name="tripFromTo"
                         variant="outlined"
                         label="Select From and Destination"
                         placeholder="Choose Campus"
