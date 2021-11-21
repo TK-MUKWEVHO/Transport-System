@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Paper,TextField, Grid, Typography, Container } from '@material-ui/core';
 import useStyles from './styles';
+import { useDispatch } from 'react-redux';
 import { useNavigate} from 'react-router-dom';
 import {getTrip} from '../../actions/trip';
 
@@ -57,7 +58,7 @@ const ConfirmTrip = () => {
                   fullWidth
                   id="firstName"
                   label="Time"
-                  autoFocus
+                  variant="outlined"
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -67,6 +68,7 @@ const ConfirmTrip = () => {
                   id="temperature"
                   label="Temperature"
                   name="temperature"
+                  variant="outlined"
                 />
               </Grid>
           </Grid>

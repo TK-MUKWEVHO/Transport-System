@@ -5,7 +5,7 @@ export const reserveTrip = (formData, router) => async (dispatch) => {
       const { data } = await api.reserveTrip(formData);
   
       dispatch({ type: "RESERVE_TRIP", data });
-      router("/confirm");
+      router('/confirm');
     } catch (error) {
       console.log(error);
     }
