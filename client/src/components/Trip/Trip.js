@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Avatar, Button, Paper,TextField, Grid, Typography, Container } from '@material-ui/core';
+import { Button, Paper,TextField, Grid, Typography, Container } from '@material-ui/core';
 import { useNavigate,useLocation } from 'react-router-dom';
 
 import useStyles from './styles';

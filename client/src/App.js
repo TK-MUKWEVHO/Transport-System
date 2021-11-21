@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Authetication from './components/Authetication/Authetication';
 import Trip from "./components/Trip/Trip";
+import ConfirmTrip from "./components/ConfirmTrip/ConfirmTrip";
 
 
 const App=()=>{
@@ -15,7 +16,6 @@ const App=()=>{
         dispatch(getTrip())
     }, [dispatch])*/
 
-    
     return(
         <Router>
         <Container maxWith="sm">
@@ -24,6 +24,7 @@ const App=()=>{
                <Routes>
                   <Route exact path="/" element={<Authetication/>}/>
                   <Route exact path="/home" element={<Trip/>}/>
+                  <Route exact path="/confirm" element={<ConfirmTrip/>}/>
                </Routes>     
             </Box>
          </Container>
