@@ -12,7 +12,7 @@ import {reserveTrip} from '../../actions/trip';
 const Trip = () => {
   const [user,setUser]= useState(JSON.parse(localStorage.getItem('profile')));
 
-   const [form,setForm]=useState({tripFromTo: '',time: ''});
+   const [form,setForm]=useState({name: user?.result.name,studentNumber: user?.result.studentNumber,tripFromTo: '',time:'' });
 
   const dispatch = useDispatch();
   const history = useNavigate();
@@ -24,11 +24,9 @@ const Trip = () => {
   }, [location]);
 
   const handleSubmit = (e) => {
-    e.preventDefault(); 
-    dispatch(reserveTrip({...form,name: user?.result.name,studentNumber: user?.result.studentNumber},history));
-
+    e.preventDefault();
+    dispatch(reserveTrip(form,history));
   };
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
   
   const campus=[
     {name: "Main Campus To Arcadia Campus"},
@@ -38,7 +36,9 @@ const Trip = () => {
     {name: "Acadia Campus To Sosha South"},
     {name: "Acadia Campus To Sosha North"},
     {name: "Sosha South To Main Campus"},
-    {name: "South North To Main Campus"}];
+    {name: "South North To Main Campus"},
+    {name: "Main Campus To Sosha South"},
+    {name: "Main Campus To Sosha North"}];
 
     const timeSlots = Array.from(new Array(24 * 2)).map(
         (_, index) =>
@@ -77,9 +77,16 @@ const Trip = () => {
               <Grid item xs={12}>
               <Stack spacing={3}>
                 <Autocomplete
-                    id="tags"
+                    id="tripFromTo"
+                    getOptionSelected = {(option, value) => option.name === value.value}
+                    onChange={(event,option)=>{
+                      
+                      setForm({...form,tripFromTo:option.name});
+                    
+                  }}
                     options={campus}
                     getOptionLabel={(option) => option.name}
+
                     renderInput={(params) => (
                       <TextField
                         {...params}
@@ -88,7 +95,7 @@ const Trip = () => {
                         variant="outlined"
                         label="Select From and Destination"
                         placeholder="Choose Campus"
-                        handleChange={handleChange}
+                        
                       />
                     )}
                  />
@@ -97,6 +104,11 @@ const Trip = () => {
                 <Grid item xs={12}>
                 <Autocomplete
                     id="disabled-options-demo"
+                    onChange={(event,option)=>{
+                      
+                      setForm({...form,time:option});
+                    
+                  }}
                     options={timeSlots}
                     getOptionDisabled={(option) =>
                         option === timeSlots[0] || option === timeSlots[2]
@@ -107,8 +119,7 @@ const Trip = () => {
                     variant="outlined" 
                     label="Choose Time" 
                     id="time" 
-                    name="time" 
-                    handleChange={handleChange} 
+                    name="time"  
                     />}
                 />
               </Grid>
