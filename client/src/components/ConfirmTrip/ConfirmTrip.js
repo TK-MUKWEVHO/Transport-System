@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import { Button, Paper,TextField, Grid, Typography, Container } from '@material-ui/core';
 import useStyles from './styles';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate} from 'react-router-dom';
 import {confirmTrip} from '../../actions/trip';
 
@@ -9,9 +9,11 @@ const ConfirmTrip = () => {
     const dispatch = useDispatch();
      const history = useNavigate();
     const classes = useStyles();
+    const trip=useSelector((state)=>state.trip);
 
     const [form,setForm]=useState({temperature: ''});
-
+    
+    console.log(trip);
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(confirmTrip(form,history));

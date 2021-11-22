@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import {useDispatch} from 'react-redux';
-//import {getTrip} from './actions/studentTrip';
+import {getTrip} from './actions/trip';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import NavBar from "./components/NavBar/NavBar";
@@ -11,10 +11,10 @@ import ConfirmTrip from "./components/ConfirmTrip/ConfirmTrip";
 
 
 const App=()=>{
-   /* const dispatch = useDispatch();
+   const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getTrip())
-    }, [dispatch])*/
+    }, [dispatch]);
 
     return(
         <Router>
@@ -31,5 +31,4 @@ const App=()=>{
         </Router>
     );
 }
-
 export default App;
