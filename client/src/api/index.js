@@ -13,6 +13,7 @@ API.interceptors.request.use((req) => {
 //export const fetchTrip = (id) => API.get(`/studentTrip/${id}`);
 export const reserveTrip=(newReservation)=>API.post('/trip/reserve',newReservation);
 export const fetchTrip = (studentNumber) => API.get(`/trip/fetchtrip?studentNumber=${studentNumber}`);
+export const confirmTrip = (id, confirmTrip) => API.patch(`/trip/confirm/${id}`, confirmTrip);
 
 
 export const signIn = (formData) => API.post('/student/signin', formData);

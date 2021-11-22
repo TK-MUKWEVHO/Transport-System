@@ -12,8 +12,8 @@ export const getTrip = async (req,res)=>{
 
 export const reserveTrip= async (req,res)=>{
     const trip= req.body;
-
     const newTrip = new Trip({...trip,date: new Date().toISOString()});
+    
     try{
         await newTrip.save();
     }catch(error){

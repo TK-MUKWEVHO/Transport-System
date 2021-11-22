@@ -3,7 +3,7 @@ import { Button, Paper,TextField, Grid, Typography, Container } from '@material-
 import useStyles from './styles';
 import { useDispatch } from 'react-redux';
 import { useNavigate} from 'react-router-dom';
-import {getTrip} from '../../actions/trip';
+import {confirmTrip} from '../../actions/trip';
 
 const ConfirmTrip = () => {
     const dispatch = useDispatch();
@@ -14,7 +14,7 @@ const ConfirmTrip = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(getTrip(form,history));
+        dispatch(confirmTrip(form,history));
       };
     return (
         <Container component="main" maxWidth="xs">

@@ -6,6 +6,6 @@ const router= express.Router();
 
 router.post('/reserve',reserveTrip);
 router.get('/fetchtrip',getTrip);
-router.patch('/confirm',confirmTrip);
+router.patch('/confirm/:id',confirmTrip);
 
 export default router;

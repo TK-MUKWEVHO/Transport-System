@@ -19,3 +19,14 @@ export const reserveTrip = (formData, router) => async (dispatch) => {
       console.log(error);
     }
   };
+
+  export const confirmTrip = (formData, router) => async (dispatch) => {
+    try {
+      const { data } = await api.confirmTrip(formData);
+  
+      dispatch({ type: "CONFIRM_TRIP", data });
+      router('/home');
+    } catch (error) {
+      console.log(error);
+    }
+  };
