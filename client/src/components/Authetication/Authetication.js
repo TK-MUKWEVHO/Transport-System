@@ -26,7 +26,6 @@ const SignUp = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -72,5 +71,4 @@ const SignUp = () => {
     </Container>
   );
 };
-
 export default SignUp;

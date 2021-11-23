@@ -24,8 +24,8 @@ export const signup=async(req,res)=>{
     const {firstName,lastName,studentNumber,password}= req.body;
 
     try {
-        //const findStudent = await Student.findOne(studentNumber);
-        //if(findStudent) return res.status(400).json({message: "Student Already Exist"});
+        const findStudent = await Student.findOne(studentNumber);
+        if(findStudent) return res.status(400).json({message: "Student Already Exist"});
         const hashPassword = await bcrypt.hash(password,12);
         const outCome= await Student.create({name:`${firstName} ${lastName}`,studentNumber,password: hashPassword});
         const token =jwt.sign({studentNumber: outCome.studentNumber,id:outCome._id},secret,{expiresIn: '1h'});

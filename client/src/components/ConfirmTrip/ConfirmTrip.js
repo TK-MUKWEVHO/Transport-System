@@ -1,23 +1,32 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { Button, Paper,TextField, Grid, Typography, Container } from '@material-ui/core';
 import useStyles from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate} from 'react-router-dom';
-import {confirmTrip} from '../../actions/trip';
+import { useNavigate,useParams} from 'react-router-dom';
+import {confirmTrip, getTrip} from '../../actions/trip';
 
 const ConfirmTrip = () => {
     const dispatch = useDispatch();
-     const history = useNavigate();
+    const history = useNavigate();
     const classes = useStyles();
+
+    const {studentNumber}=useParams();
+
+    useEffect(() => {
+        dispatch(getTrip(studentNumber));
+    }, [dispatch, studentNumber]);
+
+
     const trip=useSelector((state)=>state.trip);
 
     const [form,setForm]=useState({temperature: ''});
     
-    console.log(trip);
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(confirmTrip(form,history));
-      };
+    };
+
     return (
         <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={6}>
@@ -31,7 +40,8 @@ const ConfirmTrip = () => {
                   fullWidth
                   id="name"
                   label="First and Last Name"
-                  name="name"  
+                  name="name"
+                  value={trip.name}  
                 />
             </Grid>
             <Grid item xs={12}>
@@ -42,6 +52,7 @@ const ConfirmTrip = () => {
                   id="studentNumber"
                   label="Student Number"
                   name="studentNumber"
+                  value={trip.studentNumber}
                 />
             </Grid>
             <Grid item xs={12}>
@@ -51,6 +62,7 @@ const ConfirmTrip = () => {
                   fullWidth
                   id="fromTo"
                   label="From and Destination"
+                  value={trip.fromTo}
                 />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -61,6 +73,7 @@ const ConfirmTrip = () => {
                   id="firstName"
                   label="Time"
                   variant="outlined"
+                  value={trip.time}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -71,6 +84,8 @@ const ConfirmTrip = () => {
                   label="Temperature"
                   name="temperature"
                   variant="outlined"
+                  value={form.temperature}
+                  onChange={(e)=>setForm({...form, temperature:e.target.value})}
                 />
               </Grid>
           </Grid>
@@ -82,4 +97,4 @@ const ConfirmTrip = () => {
     </Container>
     )
 }
-export default ConfirmTrip
+export default ConfirmTrip;

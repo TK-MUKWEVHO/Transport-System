@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useState} from "react";
 import {useDispatch} from 'react-redux';
 import {getTrip} from './actions/trip';
 import Box from '@mui/material/Box';
@@ -11,11 +11,9 @@ import ConfirmTrip from "./components/ConfirmTrip/ConfirmTrip";
 
 
 const App=()=>{
-   const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getTrip())
-    }, [dispatch]);
 
+   const user= useState(JSON.parse(localStorage.getItem('profile')));
+   
     return(
         <Router>
         <Container maxWith="sm">
