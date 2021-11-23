@@ -2,18 +2,15 @@ import React, { useState,useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Paper,TextField, Grid, Typography, Container } from '@material-ui/core';
 import { useNavigate,useLocation } from 'react-router-dom';
-
 import useStyles from './styles';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from '@mui/material/Stack';
-import decode from 'jwt-decode';
 import {reserveTrip} from '../../actions/trip';
 
 const Trip = () => {
+
   const [user,setUser]= useState(JSON.parse(localStorage.getItem('profile')));
-
-   const [form,setForm]=useState({name: user?.result.name,studentNumber: user?.result.studentNumber,tripFromTo: '',time:'' });
-
+  const [form,setForm]=useState({name: user?.result.name,studentNumber: user?.result.studentNumber,tripFromTo: '',time:'' });
   const dispatch = useDispatch();
   const history = useNavigate();
   const classes = useStyles();
