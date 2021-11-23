@@ -40,9 +40,9 @@ const Trip = () => {
     {name: "Main Campus To Sosha South"},
     {name: "Main Campus To Sosha North"}];
 
-    const timeSlots = Array.from(new Array(24 * 2)).map(
+    const timeSlots = Array.from(new Array(22 * 2)).map(
         (_, index) =>
-          `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${
+          `${index < 20 ? '' : ''}${Math.floor(index / 2)}:${
             index % 2 === 0 ? '00' : '30'
           }`,
       );
@@ -79,14 +79,9 @@ const Trip = () => {
                 <Autocomplete
                     id="tripFromTo"
                     getOptionSelected = {(option, value) => option.name === value.value}
-                    onChange={(event,option)=>{
-                      
-                      setForm({...form,tripFromTo:option.name});
-                    
-                  }}
+                    onChange={(event,option)=>{setForm({...form,tripFromTo:option.name})}}
                     options={campus}
                     getOptionLabel={(option) => option.name}
-
                     renderInput={(params) => (
                       <TextField
                         {...params}
@@ -111,6 +106,7 @@ const Trip = () => {
                   }}
                     options={timeSlots}
                     getOptionDisabled={(option) =>
+              
                         option === timeSlots[0] || option === timeSlots[2]
                     }
                     renderInput={(params) => 
