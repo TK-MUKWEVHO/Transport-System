@@ -11,7 +11,7 @@ export const reserveTrip = (formData, router) => async (dispatch) => {
     }
   };
 
-  export const getTrip = (studentNumber) => async (dispatch) => {
+  export const getTrip = () => async (dispatch) => {
     try {
       const { data }  = await api.fetchTrip();
       dispatch({ type: "FETCH_TRIP", payload: { data } });

@@ -1,10 +1,8 @@
 import Trip from '../models/trip.js';
 
 export const getTrip = async (req,res)=>{
-    const studentNum=req.body;
-    console.log(studentNum);
     try {
-        const studentTrip =await Trip.find({studentNumber: studentNum,status: "Panding"});
+        const studentTrip =await Trip.find();
         res.status(200).json(studentTrip);
     } catch (error) {
         res.status(404).json({message: error.message});

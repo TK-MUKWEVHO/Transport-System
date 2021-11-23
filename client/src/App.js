@@ -14,22 +14,10 @@ import { useLocation } from 'react-router-dom';
 const App=()=>{
    //const location = useLocation();
    const dispatch = useDispatch();
-   const [user,setUser]= useState(JSON.parse(localStorage.getItem('profile')));
-  
     useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('profile')));
-    }, []);
-
-    const studentNumber=useState({studentNumber: user?.result.studentNumber});
-   
-    useEffect(() => {
-    dispatch(getTrip(studentNumber));
+    dispatch(getTrip());
     },[]);
     
-    const trip=useSelector((state)=>state.trip);
-    console.log(trip);
-    
-
     return(
         <Router>
         <Container maxWith="sm">
