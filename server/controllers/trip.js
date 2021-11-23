@@ -1,7 +1,8 @@
 import Trip from '../models/trip.js';
 
 export const getTrip = async (req,res)=>{
-    const {studentNum}=req.query;
+    const studentNum=req.body;
+    console.log(studentNum);
     try {
         const studentTrip =await Trip.find({studentNumber: studentNum,status: "Panding"});
         res.status(200).json(studentTrip);
@@ -12,8 +13,9 @@ export const getTrip = async (req,res)=>{
 
 export const reserveTrip= async (req,res)=>{
     const trip= req.body;
+    const findTrip=Trip.find({studentNumber: trip.studentNumber,status: "Panding"});
+    if(findTrip) return res.status(400).json({message: "Can not two trip at a time"});
     const newTrip = new Trip({...trip,date: new Date().toISOString()});
-    
     try{
         await newTrip.save();
     }catch(error){

@@ -11,7 +11,7 @@ API.interceptors.request.use((req) => {
 });
 
 export const reserveTrip=(newReservation)=>API.post('/trip/reserve',newReservation);
-export const fetchTrip = (studentNumber) => API.get(`/trip/fetchtrip?studentNumber=${studentNumber}`);
+export const fetchTrip = (studentNumber) => API.get('/trip/fetchtrip',studentNumber);
 export const confirmTrip = (id, confirmTrip) => API.patch(`/trip/confirm/${id}`, confirmTrip);
 export const signIn = (formData) => API.post('/student/signin', formData);
 export const signUp = (formData) => API.post('/student/signup', formData);

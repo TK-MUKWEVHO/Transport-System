@@ -1,5 +1,5 @@
 import React, { useState,useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { Button, Paper,TextField, Grid, Typography, Container } from '@material-ui/core';
 import { useNavigate,useLocation } from 'react-router-dom';
 import useStyles from './styles';
@@ -16,6 +16,9 @@ const Trip = () => {
   const classes = useStyles();
   const location = useLocation();
 
+  const trip=useSelector((state)=>state.trip);
+  console.log(trip);
+  
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
@@ -50,15 +53,8 @@ const Trip = () => {
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
           <Grid item xs={12}>
-                <TextField
-                  disabled
-                  variant="outlined"
-                  fullWidth
-                  id="name"
-                  label="First and Last Name"
-                  name="name"
-                  value={user?.result.name}
-                />
+                <TextField disable variant="outlined" fullWidth id="name" label="First and Last Name" name="name" value={user?.result.name}
+/>
             </Grid>
             <Grid item xs={12}>
                 <TextField

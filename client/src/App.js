@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import NavBar from "./components/NavBar/NavBar";
@@ -6,9 +6,30 @@ import { BrowserRouter as Router,Routes,Route} from "react-router-dom";
 import Authetication from './components/Authetication/Authetication';
 import Trip from "./components/Trip/Trip";
 import ConfirmTrip from "./components/ConfirmTrip/ConfirmTrip";
+import { useDispatch,useSelector } from 'react-redux';
+import {getTrip} from './actions/trip';
+import { useLocation } from 'react-router-dom';
+
 
 const App=()=>{
-   const user= useState(JSON.parse(localStorage.getItem('profile')));
+   //const location = useLocation();
+   const dispatch = useDispatch();
+   const [user,setUser]= useState(JSON.parse(localStorage.getItem('profile')));
+  
+    useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('profile')));
+    }, []);
+
+    const studentNumber=useState({studentNumber: user?.result.studentNumber});
+   
+    useEffect(() => {
+    dispatch(getTrip(studentNumber));
+    },[]);
+    
+    const trip=useSelector((state)=>state.trip);
+    console.log(trip);
+    
+
     return(
         <Router>
         <Container maxWith="sm">
@@ -17,7 +38,7 @@ const App=()=>{
                <Routes>
                   <Route exact path="/" element={<Authetication/>}/>
                   <Route exact path="/home" element={<Trip/>}/>
-                  <Route exact path="/confirm" element={<ConfirmTrip/>}/>
+                  <Route exact path="/confirm/:studentNumber" element={<ConfirmTrip/>}/>
                </Routes>     
             </Box>
          </Container>
