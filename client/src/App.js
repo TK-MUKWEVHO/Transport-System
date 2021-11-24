@@ -26,7 +26,7 @@ const App=()=>{
                <Routes>
                   <Route exact path="/" element={<Authetication/>}/>
                   <Route exact path="/home" element={<Trip/>}/>
-                  <Route exact path="/confirm/:studentNumber" element={<ConfirmTrip/>}/>
+                  <Route exact path="/confirm" element={<ConfirmTrip/>}/>
                </Routes>     
             </Box>
          </Container>

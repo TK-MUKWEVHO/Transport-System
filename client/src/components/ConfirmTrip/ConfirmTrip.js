@@ -28,7 +28,7 @@ const ConfirmTrip = () => {
     };
 
     return (
-        <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="xs">
       <Paper className={classes.paper} elevation={6}>
         <Typography component="h1" variant="h5">Confirm Trip</Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
